@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
@@ -11,31 +11,21 @@ import { FirebaseService } from '../services/firebase.service';
   templateUrl: './listar.page.html',
   styleUrls: ['./listar.page.scss'],
 })
-export class ListarPage implements OnInit {
+export class ListarPage {
 
-  tarefas!: Tarefa[];
+  tarefas!: Observable<Tarefa[]>;
 
   constructor(
     private firebaseService: FirebaseService,
-    private router: Router) { }
-
-  ngOnInit(): void {
-    
-      this.firebaseService.listar().subscribe(
-        resultado => {
-          this.tarefas = resultado;
-        }
-      );
-    
-  }
-  
-  
+    private router: Router) { 
+      this.tarefas = this.firebaseService.listar();
+    }
 
   novaTarefa() {
     this.router.navigateByUrl('/header/cadastrar');
   }
 
-  busca() {
+  buscar() {
     this.router.navigateByUrl('/header/pesquisar');
   }
 }

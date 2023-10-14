@@ -7,7 +7,7 @@
       <ion-button color="success" (click)="novaTarefa()">
         <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
       </ion-button>
-      <ion-button color="success" (click)="busca()">
+      <ion-button color="success" (click)="buscar()">
         <ion-icon slot="icon-only" name="search-circle-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -30,7 +30,7 @@
         <ion-col>Categoria</ion-col>
         <ion-col>Ações</ion-col>
       </ion-row>
-      <ion-row *ngFor="let tarefa of tarefas">
+      <ion-row *ngFor="let tarefa of tarefas |async">
         <ion-item>
           <ion-col>{{ tarefa.id }}</ion-col>
         </ion-item>
